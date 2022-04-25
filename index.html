@@ -1,13 +1,27 @@
 <html>
 <head>
+<title>DaleZ 的 Blog 主页</title>
 <style>
-html { 
-  background: url(/Wallpapers/Placeholder1.jpg) no-repeat center fixed; 
+body { 
+  background: url(./Wallpapers/Placeholder1.jpg) no-repeat center fixed; 
   background-size: cover;
 }
 </style>
+<link rel="stylesheet" type="text/css" href="./Clippy/build/clippy.css" media="all">
 </head>
 <body>
 <p>PlaceHolder</p>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+
+<!-- Clippy.js -->
+<script src="./Clippy/build/clippy.min.js"></script>
+
+<!-- Init script -->
+<script type="text/javascript">
+    clippy.load('Clippy', function(agent) {
+        // Do anything with the loaded agent
+        agent.show();
+    });
+</script>
 </body>
 </html>
