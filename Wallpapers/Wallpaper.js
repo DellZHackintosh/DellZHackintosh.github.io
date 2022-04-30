@@ -1,2 +1,3 @@
-var n = Math.floor(Math.random() * 2) + 1;
-document.body.style.background = 'url(./Wallpapers/Placeholder2.jpg)';
+var num = Math.floor(Math.random() * 36) + 1;
+var photo = "./Wallpapers/Placeholder" + num + ".jpg"
+document.body.style.backgroundImage="url("+[photo]+")";
