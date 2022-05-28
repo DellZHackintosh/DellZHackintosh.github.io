@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>DaleZ 的 Blog 主页</title>
+<style>
+body { 
+  background-image: url(./Wallpapers/Placeholder1.jpg);
+  background-repeat: no-repeat; 
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+</style>
+<link rel="shortcut icon" href=" ./favicon.ico" />
+<link rel="stylesheet" type="text/css" href="./Clippy/build/clippy.css" media="all">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<script src="./Wallpapers/Wallpaper.js"></script>
+<p>PlaceHolder</p>
+<button type="button" onclick="PaperClip.speak('我来自于 Windows，很高兴可以陪伴您。')">Speak Test</button>
+<button type="button" onclick="PaperClip.hide()"><img src="./Clippy/Hide.svg#svgView(preserveAspectRatio(none))" /></button>
+<button type="button" onclick="PaperClip.show()"><img src="./Clippy/Show.svg#svgView(preserveAspectRatio(none))" /></button>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+
+<!-- Clippy.js -->
+<script src="./Clippy/build/clippy.min.js"></script>
+
+<!-- Init script -->
+<script type="text/javascript">
+    let PaperClip;
+    clippy.load('Clippy', function(agent) {
+        PaperClip = agent;
+        // Do anything with the loaded agent
+        agent.show();
+    });
+    </script>
+</body>
+</html>
