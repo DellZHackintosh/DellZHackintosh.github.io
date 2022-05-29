@@ -9,15 +9,24 @@ body {
   background-position: center;
   background-size: cover;
 }
+.test {
+  background-color:rgba(255,255,255,0.5);
+  border-radius: 12px;
+  height: 100%;
+  padding: 10px;
+  backdrop-filter: blur(5px);
+}
 </style>
+<link rel="stylesheet" type="text/css" href="./Fonts/HarmonyOSFont.css">
 <link rel="shortcut icon" href=" ./favicon.ico" />
 <link rel="stylesheet" type="text/css" href="./Clippy/build/clippy.css" media="all">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 <script src="./Wallpapers/Wallpaper.js"></script>
+<div class="test">
 <p>PlaceHolder</p>
-<button type="button" onclick="PaperClip.speak('我来自于 Windows，很高兴可以陪伴您。')">Speak Test</button>
+<button type="button" onclick="PaperClip.speak('我来自于 Windows，很高兴可以陪伴您。')" style="font-family: HarmonyOSSans, &quot;Times New Roman&quot;, Helvetica;" times="" new="" roman",="" helvetica;"="">Speak Test</button>
 <button type="button" onclick="PaperClip.hide()"><img src="./Clippy/Hide.svg#svgView(preserveAspectRatio(none))" /></button>
 <button type="button" onclick="PaperClip.show()"><img src="./Clippy/Show.svg#svgView(preserveAspectRatio(none))" /></button>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
@@ -34,5 +43,6 @@ body {
         agent.show();
     });
     </script>
+</div>
 </body>
 </html>
