@@ -43,6 +43,12 @@ body {
         agent.show();
     });
     </script>
+  <div id="content"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.16/marked.min.js"></script>
+  <script>
+    document.getElementById('content').innerHTML =
+      marked.parse('# 测试 Markdown & Marked。\n\n**粗体 Bold**\n\n*斜体 Italic*\n\n**_粗体与斜体 Bold&Italic_**\n\n~~看到这句话的人是猪~~\n\n`这是代码，不是也得是。`\n\n> 我没说过这句话。\n\n测试到此结束。');
+  </script>
 </div>
 </body>
 </html>
