@@ -1,0 +1,31 @@
+blockquote {
+    font-size: inherit;
+    border: 0;
+    background: #e4eef6;
+    color: #668299;
+    border-radius: 4px;
+    padding: 8px 15px;
+    border-top: 2px dotted #fff;
+    border-bottom: 2px dotted #fff;
+    margin: 1em 0;
+}
+
+code {
+    font-family: source-code-pro,Monaco,Consolas,courier new,monospace;
+    padding: 5px;
+    background: #f7f7f7;
+    color: #5e5e5e;
+    line-height: 1.3;
+    font-size: 90%;
+    border-radius: 4px;
+}
+
+hr {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 0;
+    border-top: 2px solid #e4eef6;
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+}

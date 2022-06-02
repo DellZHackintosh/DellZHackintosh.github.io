@@ -1,32 +1,33 @@
 <html>
 <head>
 <title>DaleZ 的 Blog 主页</title>
-<style>
-body { 
-  background-image: url(./Wallpapers/Placeholder1.jpg);
-  background-repeat: no-repeat; 
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
-}
-.test {
-  background-color:rgba(255,255,255,0.5);
-  border-radius: 12px;
-  height: 100%;
-  padding: 10px;
-  backdrop-filter: blur(5px);
-}
-</style>
 <link rel="stylesheet" type="text/css" href="./Fonts/HarmonyOSFont.css">
+<link rel="stylesheet" type="text/css" href="./Fonts/blog.css">
+<link rel="stylesheet" type="text/css" href="./Fonts/markdown.css">
+<link rel="stylesheet" type="text/css" href="./HighLight/styles/github.min.css"/>
 <link rel="shortcut icon" href=" ./favicon.ico" />
 <link rel="stylesheet" type="text/css" href="./Clippy/build/clippy.css" media="all">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 <script src="./Wallpapers/Wallpaper.js"></script>
+<script type="text/javascript">
+ function badsoup() {
+  var xhr = new XMLHttpRequest();
+    xhr.open('get', 'https://www.7ed.net/soup/api');
+    xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+     var data = JSON.parse(xhr.responseText);
+     var badsoup = data.badsoup;
+     PaperClip.speak(badsoup);
+    }
+   }
+  xhr.send();
+ }
+</script>
 <div class="test">
 <p>PlaceHolder</p>
-<button type="button" onclick="PaperClip.speak('我来自于 Windows，很高兴可以陪伴您。')" style="font-family: HarmonyOSSans, &quot;Times New Roman&quot;, Helvetica;" times="" new="" roman",="" helvetica;"="">Speak Test</button>
+<button type="button" onclick="badsoup()" style="font-family: HarmonyOSSans, &quot;Times New Roman&quot;, Helvetica;" times="" new="" roman",="" helvetica;"="">毒鸡汤测试</button>
 <button type="button" onclick="PaperClip.hide()"><img src="./Clippy/Hide.svg#svgView(preserveAspectRatio(none))" /></button>
 <button type="button" onclick="PaperClip.show()"><img src="./Clippy/Show.svg#svgView(preserveAspectRatio(none))" /></button>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
@@ -45,9 +46,22 @@ body {
     </script>
   <div id="content"></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.16/marked.min.js"></script>
+  <script src="./HighLight/highlight.min.js"></script>
   <script>
-    document.getElementById('content').innerHTML =
-      marked.parse('# 测试 Markdown & Marked。\n\n**粗体 Bold**\n\n*斜体 Italic*\n\n**_粗体与斜体 Bold&Italic_**\n\n~~看到这句话的人是猪~~\n\n`这是代码，不是也得是。`\n\n> 我没说过这句话。\n\n测试到此结束。');
+  marked.setOptions({
+    highlight: function(code) {
+     return hljs.highlightAuto(code).value;
+    },
+    pedantic: false,
+    gfm: true,
+    breaks: false,
+    sanitize: false,
+    smartLists: false,
+    smartypants: true,
+    xhtml: false
+  });
+  document.getElementById('content').innerHTML =
+    marked.parse('# 测试 Markdown & Marked。\n\n**粗体 Bold**\n\n*斜体 Italic*\n\n**_粗体与斜体 Bold&Italic_**\n\n~~看到这句话的人是猪~~\n\n`这是代码，不是也得是。`\n```\necho Hello world!\necho pause\n```\n\n> 我没说过这句话。\n>> 嵌套模式。\n\n***\n\n测试到此结束。');
   </script>
 </div>
 </body>
