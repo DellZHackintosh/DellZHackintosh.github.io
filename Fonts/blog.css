@@ -13,3 +13,52 @@ body {
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
 }
+
+p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0 0 10px;
+  margin-bottom: 0;
+}
+
+a {
+    cursor: pointer;
+    color: #0e72f5;
+    text-decoration: none;
+}
+
+table {
+    width: 98%;
+    margin: 1%;
+    overflow-x: auto;
+    display: table;
+    border-collapse: separate;
+    text-indent: initial;
+    border-spacing: 2px;
+    border-color: grey;
+    overflow: auto;
+    overflow-wrap: break-word;
+}
+
+thead {
+    display: table-header-group;
+    border-color: inherit;
+    border-collapse: separate;
+    text-indent: initial;
+    border-spacing: 2px;
+    overflow: auto;
+    overflow-wrap: break-word;
+}
+
+tbody {
+    display: table-row-group;
+    border-color: inherit;
+}
+
+tr {
+    background: rgba(27,116,232,0.2);
+    color: #111;
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}

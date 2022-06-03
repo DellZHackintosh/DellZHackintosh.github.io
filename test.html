@@ -20,6 +20,7 @@
      var data = JSON.parse(xhr.responseText);
      var badsoup = data.badsoup;
      PaperClip.speak(badsoup);
+     PaperClip.play('Wave');
     }
    }
   xhr.send();
@@ -30,6 +31,7 @@
 <button type="button" onclick="badsoup()" style="font-family: HarmonyOSSans, &quot;Times New Roman&quot;, Helvetica;" times="" new="" roman",="" helvetica;"="">毒鸡汤测试</button>
 <button type="button" onclick="PaperClip.hide()"><img src="./Clippy/Hide.svg#svgView(preserveAspectRatio(none))" /></button>
 <button type="button" onclick="PaperClip.show()"><img src="./Clippy/Show.svg#svgView(preserveAspectRatio(none))" /></button>
+<button type="button" onclick="showsome()" style="font-family: HarmonyOSSans, &quot;Times New Roman&quot;, Helvetica;" times="" new="" roman",="" helvetica;"="">显示内容</button>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
 
 <!-- Clippy.js -->
@@ -45,6 +47,7 @@
     });
     </script>
   <div id="content"></div>
+  <div id="texts" style="display: none;"></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.16/marked.min.js"></script>
   <script src="./HighLight/highlight.min.js"></script>
   <script>
@@ -54,14 +57,19 @@
     },
     pedantic: false,
     gfm: true,
-    breaks: false,
+    breaks: true,
     sanitize: false,
     smartLists: false,
     smartypants: true,
     xhtml: false
   });
+  $(texts).load("https://dellzhackintosh.github.io/Test.md");
+  </script>
+<script type="text/javascript">
+ function showsome() {
   document.getElementById('content').innerHTML =
-    marked.parse('# 测试 Markdown & Marked。\n\n**粗体 Bold**\n\n*斜体 Italic*\n\n**_粗体与斜体 Bold&Italic_**\n\n~~看到这句话的人是猪~~\n\n`这是代码，不是也得是。`\n```\necho Hello world!\necho pause\n```\n\n> 我没说过这句话。\n>> 嵌套模式。\n\n***\n\n测试到此结束。');
+      marked.parse(document.getElementById('texts').innerText);
+  }
   </script>
 </div>
 </body>
