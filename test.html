@@ -22,9 +22,11 @@ body {
 <link rel="stylesheet" type="text/css" href="./Fonts/blog.css">
 <link rel="stylesheet" type="text/css" href="./Fonts/markdown.css">
 <link rel="stylesheet" type="text/css" href="./HighLight/styles/github.min.css"/>
+<script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
 <link rel="shortcut icon" href=" ./favicon.ico" />
 <link rel="stylesheet" type="text/css" href="./Clippy/build/clippy.css" media="all">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
 </head>
 <body>
 <script src="./Wallpapers/Wallpaper.js"></script>
@@ -65,10 +67,10 @@ body {
     </script>
   <div id="content">
       <img src="./Test/loading.svg#svgView(preserveAspectRatio(none))" style="margin-top: 15px; margin-left: auto; margin-right: auto; display: block;"/>
-      <h3 style="text-align:center;">正在加载...</h3>
+      <h3 style="text-align:center;">正在加载🧐...</h3>
   </div>
   <div id="texts" style="display: none;"></div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.16/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="./HighLight/highlight.min.js"></script>
   <script>
   marked.setOptions({
@@ -84,6 +86,10 @@ body {
     xhtml: false
   });
   $(texts).load("https://dellzhackintosh.github.io/Test.md");
+  twemoji.parse(document.body,  {
+    base: /MyGitOC/DellZHackintosh.github.io,         // default MaxCDN
+    folder: /MSEmojis        // in case it's specified
+  });
   </script>
 <script type="text/javascript">
  function showsome() {
