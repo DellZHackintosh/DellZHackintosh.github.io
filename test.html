@@ -90,11 +90,29 @@ body {
     base: 'https://DellZHackintosh.github.io',         // default MaxCDN
     folder: '/MSEmojis'        // in case it's specified
   });
+  var xhr = new XMLHttpRequest();
+    xhr.open('get', 'https://dellzhackintosh.github.io/Test.md');
+    xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+     var data = JSON.parse(xhr.responseText);
+     var badsoup = data.badsoup;
+  document.getElementById('content').innerHTML =
+    twemoji.parse(marked.parse(badsoup),  {
+    base: 'https://DellZHackintosh.github.io',         // default MaxCDN
+    folder: '/MSEmojis'        // in case it's specified
+  });
+    }
+   }
+  xhr.send();
   </script>
 <script type="text/javascript">
  function showsome() {
   document.getElementById('content').innerHTML =
-      marked.parse(document.getElementById('texts').innerText);
+    twemoji.parse(marked.parse(document.getElementById('texts').innerText),  {
+    base: 'https://DellZHackintosh.github.io',         // default MaxCDN
+    folder: '/MSEmojis'        // in case it's specified
+  });
+
   }
   </script>
 </div>
