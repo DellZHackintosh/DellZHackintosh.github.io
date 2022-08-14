@@ -8,7 +8,7 @@
    version="1.1"
    id="svg5"
    inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
-   sodipodi:docname="svg.svg"
+   sodipodi:docname="loading.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -57,22 +57,23 @@
        stroke-width="3"
        fill="none"
        stroke-dashoffset=""
+       stroke-linecap="round"
        id="circlebar"
        stroke-dasharray="1 100">
-          <animateTransform attributeName="transform"
-                          attributeType="XML"
-                          type="rotate"
-                          from="0 16.933332 16.933332"
-                          to="360 16.933332 16.933332"
-                          dur="0.7s"
-                          repeatCount="indefinite"/>
-          <animate
-                          attributeName="stroke-dasharray"
-                          attributeType="XML"
-                          type="rotate"
-                          values="1 100;30 100;1 100"
-                          dur="3s"
-                          repeatCount="indefinite"/>
-     </circle>
+      <animateTransform
+         attributeName="transform"
+         attributeType="AUTO"
+         type="rotate"
+         values="0 16.933332 16.933332;450 16.933332 16.933332;1080 16.933332 16.933332"
+         dur="2s"
+         repeatCount="indefinite" />
+      <animate
+         attributeName="stroke-dasharray"
+         attributeType="AUTO"
+         type="rotate"
+         values="0.01 100;30 100;0.01 100"
+         dur="2s"
+         repeatCount="indefinite" />
+    </circle>
   </g>
 </svg>
