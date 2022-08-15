@@ -30,14 +30,28 @@ img.emoji {
 }
 </style>
 <link rel="stylesheet" type="text/css" href="./Fonts/HarmonyOSFont.css">
-<script src="https://DellZHackintosh.github.io/msemoji.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/DellZHackintosh/msemoji@0.1-beta/src/script/msemoji.min.js" crossorigin="anonymous"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+<script>
+ function choice() {
+  if ($("#choice").val() == '/svg') {
+   return '.svg';
+  } else {
+   return '.png';
+  }
+ }
+</script>
 <link rel="shortcut icon" href=" ./favicon.ico" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8">
 </head>
 <body>
  <div class="test">
+  <select id="choice">
+   <option value="/72x72">PNG</option>
+   <option value="/svg">SVG</option>
+   <option value="/3D">3D（APNG）</option>
+  </select>
   <input type="text" name="emoji" id="emoji">
   <button type="button" onclick="getemoji()">查询</button>
   <br />
@@ -45,8 +59,8 @@ img.emoji {
  function getemoji() {
   document.getElementById('content').innerHTML =
     msemoji.parse($("#emoji").val(),  {
-    base: 'https://DellZHackintosh.github.io',         // default MaxCDN
-    folder: '/MSEmojis'        // in case it's specified
+    ext: choice(),
+    folder: $("#choice").val()
   });
   }
   </script>
