@@ -50,7 +50,6 @@ body {
 <button type="button" onclick="badsoup()">毒鸡汤测试</button>
 <button type="button" onclick="PaperClip.hide()"><img src="./Clippy/Hide.svg#svgView(preserveAspectRatio(none))" /></button>
 <button type="button" onclick="PaperClip.show()"><img src="./Clippy/Show.svg#svgView(preserveAspectRatio(none))" /></button>
-<button type="button" onclick="showsome()">显示内容</button>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
 
 <!-- Clippy.js -->
@@ -67,13 +66,16 @@ body {
     </script>
   <div id="content">
       <img src="./Test/loading.svg" width="128" height="128" style="display: block; margin-left: auto; margin-right: auto;"/>
-      <h3 style="text-align:center;">正在加载🧐...</h3>
-    <p style="text-align:center;">提示：自动加载当前不可用。请点击“加载内容”按钮。</p>
+      <h3 style="text-align:center;">正在加载...</h3>
   </div>
   <div id="texts" style="display: none;"></div>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="./HighLight/highlight.min.js"></script>
   <script>
+  twemoji.parse(document.body,  {
+    base: 'https://DellZHackintosh.github.io',
+    folder: '/MSEmojis'
+  });
   marked.setOptions({
     highlight: function(code) {
      return hljs.highlightAuto(code).value;
@@ -86,34 +88,14 @@ body {
     smartypants: true,
     xhtml: false
   });
-  $(texts).load("https://dellzhackintosh.github.io/Test.md");
-  twemoji.parse(document.body,  {
-    base: 'https://DellZHackintosh.github.io',         // default MaxCDN
-    folder: '/MSEmojis'        // in case it's specified
+  $(texts).load("https://dellzhackintosh.github.io/Test.md", function () {
+     document.getElementById('content').innerHTML = 
+     marked.parse(document.getElementById('texts').innerText);
+     twemoji.parse(document.getElementById('texts'),  {
+     base: 'https://gh.sourcegcdn.com/DellZHackintosh/msemoji/1.0.0/src/',
+     folder: '72x72'
+   });
   });
-  var xhr = new XMLHttpRequest();
-    xhr.open('get', 'https://dellzhackintosh.github.io/Test.md');
-    xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-     var data = JSON.parse(xhr.responseText);
-     var badsoup = data.badsoup;
-  document.getElementById('content').innerHTML =
-    twemoji.parse(marked.parse(badsoup),  {
-    base: 'https://DellZHackintosh.github.io',         // default MaxCDN
-    folder: '/MSEmojis'        // in case it's specified
-  });
-    }
-   }
-  xhr.send();
-  </script>
-<script type="text/javascript">
- function showsome() {
-  document.getElementById('content').innerHTML =
-    twemoji.parse(marked.parse(document.getElementById('texts').innerText),  {
-    base: 'https://gh.sourcegcdn.com/DellZHackintosh/msemoji/1.0.0/src/',         // default MaxCDN
-    folder: '72x72'        // in case it's specified
-  });
-  }
   </script>
 </div>
 </body>
