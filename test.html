@@ -90,11 +90,10 @@ body {
   });
   $(texts).load("https://dellzhackintosh.github.io/Test.md", function () {
      document.getElementById('content').innerHTML = 
-     marked.parse(document.getElementById('texts').innerText);
-     twemoji.parse(document.getElementById('texts'),  {
+     twemoji.parse(marked.parse(document.getElementById('texts').innerText),  {
      base: 'https://gh.sourcegcdn.com/DellZHackintosh/msemoji/1.0.0/src/',
      folder: '72x72'
-   });
+    });
   });
   </script>
 </div>
