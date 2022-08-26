@@ -1,14 +1,1 @@
-@font-face {
-  font-family: HarmonyOSSans;
-  src: url(regular.ttf);
-}
 
-@font-face {
-  font-family: HarmonyOSSans;
-  src: url(bold.ttf);
-  font-weight: bold;
-}
-
-body {
-  font-family: harmonyossanssc,"harmonyos sans sc", 微软雅黑, PingFangSC-Regular, HarmonyOSSans;
-}

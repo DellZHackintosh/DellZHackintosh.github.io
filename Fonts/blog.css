@@ -109,6 +109,7 @@ body {
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
+  font-family: harmonyossanssc,"harmonyos sans sc", 微软雅黑, PingFangSC-Regular;
 }
 .test {
   background-color:rgba(255,255,255,0.5);
