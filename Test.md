@@ -10,6 +10,10 @@
 
 ~~看到这句话的人是猪~~
 
+[通往微软的链接](https://www.microsoft.com)
+
+![](.\Wallpapers\Placeholder27.jpg)
+
 `这是代码，不是也得是。`
 
 ```
