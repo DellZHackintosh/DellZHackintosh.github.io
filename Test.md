@@ -12,7 +12,7 @@
 
 [通往微软的链接](https://www.microsoft.com)
 
-![](.\Wallpapers\Placeholder27.jpg)
+![](./Wallpapers/Placeholder27.jpg)
 
 `这是代码，不是也得是。`
 

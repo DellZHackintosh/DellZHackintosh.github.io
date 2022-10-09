@@ -128,7 +128,10 @@ hr {
 }
 a {
 	border-bottom:1px solid var(--control-bg);
-	font-weight:600
+	font-weight:600;
+     cursor: pointer;
+     color: var(--link-color);
+     text-decoration: none;
 }
 a:hover,a:focus,a:active {
 	text-decoration:none;
@@ -394,6 +397,17 @@ img.emoji {
 }
 p {
     margin: 0px;
+}
+a {
+	border-bottom:1px solid var(--control-bg);
+	font-weight:600;
+     cursor: pointer;
+     color: var(--link-color);
+     text-decoration: none;
+}
+a:hover,a:focus,a:active {
+	text-decoration:none;
+	border-color:var(--link-color)
 }
 body {
     color: var(--text-color);
