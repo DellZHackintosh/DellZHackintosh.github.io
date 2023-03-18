@@ -1,83 +1,10 @@
 <html>
-<head>
-<title>Emoji Test</title>
-<style>
-body { 
-  background-image: url(./emoji.jpg);
-  background-repeat: no-repeat; 
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
-}
-.test {
-  background-color:rgba(255,255,255,0.5);
-  border-radius: 12px;
-  min-height: 100%;
-  padding: 10px;
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
-  text-align:center;
-  box-shadow: 0 0px 10px 0 rgb(0 0 0 / 20%), 0 0px 10px 0 rgb(0 0 0 / 20%);
-}
-
-#emoji {
-  width:50%;
-}
-
-img.emoji {
-   width:72px;
-   height:72px;
-}
-</style>
-<link rel="stylesheet" type="text/css" href="./Fonts/HarmonyOSFont.css">
-<script src="https://cdn.jsdelivr.net/gh/DellZHackintosh/msemoji@1.0.0/src/script/msemoji.min.js" crossorigin="anonymous"></script>
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
-<script>
- function choice() {
-  if ($("#choice").val() == '/svg') {
-   return '.svg';
-  } else {
-   return '.png';
-  }
- }
- function ifraw() {
-  if ($("#RAW").prop("checked")) {
-   return 'https://raw.githubusercontents.com/DellZHackintosh/msemoji/main/src';
-  } else {
-   return 'https://raw.githubusercontent.com/DellZHackintosh/msemoji/main/src';
-  }
- }
-</script>
-<link rel="shortcut icon" href=" ./favicon.ico" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta charset="utf-8">
-</head>
-<body>
- <div class="test">
-  <p>
-  <select id="choice">
-   <option value="/72x72">PNG</option>
-   <option value="/svg">SVG</option>
-   <option value="/3D">3D（APNG）</option>
-  </select>
-  <input type="text" name="emoji" id="emoji">
-  <input type="checkbox" id="RAW">使用加速 RAW。
-  <button type="button" onclick="getemoji()">查询</button>
-  </p>
-  <br />
-  <script type="text/javascript">
- function getemoji() {
-  document.getElementById('content').innerHTML =
-    msemoji.parse($("#emoji").val(),  {
-    base: ifraw(),
-    ext: choice(),
-    folder: $("#choice").val()
-  });
-  }
-  </script>
-  <div id="content">
-    <p style="text-align:center;">选择要查看的格式，然后在上面的输入框中输入表情 Emoji，最后点击“查询”按钮即可预览表情。</p>
-  </div>
- </div>
-</body>
+	<head>
+		<title>Emoji Test</title>
+		<script>
+			window.location.assign("https://dellzhackintosh.github.io/emojitest.html");
+		</script>
+	</head>
+	<body>
+	</body>
 </html>
