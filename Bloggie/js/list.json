@@ -28,7 +28,7 @@
          "JoinWaitlist":true
       },
       "2":{
-         "path":"./Bloggie/js/Highlight/highlight.min.js",
+         "path":"./Bloggie/js/HighLight/highlight.min.js",
          "options":null,
          "JoinWaitlist":true
       },
