@@ -1,0 +1,46 @@
+{
+    "background_color": "#202020",
+    "description": "DaleZ 的 Blog PWA。",
+    "dir": "ltr",
+    "lang": "zh-CN",
+    "display": "standalone",
+    "display_override": [
+        "window-controls-overlay",
+        "standalone"
+    ],
+    "icons": [
+        {
+            "src": "macOS/icon16.png",
+            "sizes": "16x16"
+        },
+        {
+            "src": "macOS/icon32.png",
+            "sizes": "32x32"
+        },
+        {
+            "src": "macOS/icon64.png",
+            "sizes": "64x64"
+        },
+        {
+            "src": "macOS/icon128.png",
+            "sizes": "128x128"
+        },
+        {
+            "src": "macOS/icon256.png",
+            "sizes": "256x256"
+        },
+        {
+            "src": "macOS/icon512.png",
+            "sizes": "512x512"
+        },
+        {
+            "src": "macOS/icon.png",
+            "sizes": "1024x1024"
+        }
+    ],
+    "name": "DaleZ 的 Blog",
+    "orientation": "any",
+    "scope": "../../../../",
+    "start_url": "../../../../index.html",
+    "theme_color": "#202020"
+}

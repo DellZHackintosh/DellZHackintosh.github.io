@@ -1,0 +1,44 @@
+{
+   "name":"DaleZ 的 Blog",
+   "lang":"zh-CN",
+   "dir":"ltr",
+   "jslistpath":"./Bloggie/js/list.json",
+   "articlelistpath":"./Bloggie/article/list.json",
+   "wait":{
+      "type":"function",
+      "content":"(function() {return bloggie.custom.command.customLoadingAnimation();})"
+   },
+   "sw":{
+      "Supported":true,
+      "path":"./sw.js",
+      "options":null
+   },
+   "nav":{
+      "主页":{
+         "action":"bloggie.LoadArticle()",
+         "icon":"./Bloggie/skin/Res/Home.svg"
+      },
+      "目录":{
+         "action":"bloggie.LoadArticle('list')",
+         "icon":"./Bloggie/skin/Res/List.svg"
+      },
+      "设置":{
+         "action":"bloggie.LoadArticle('Settings')",
+         "icon":"./Bloggie/skin/Res/Setting.svg"
+      }
+   },
+   "SpecialPage":{
+      "list":{
+         "action":"loadlist()",
+         "Title":"目录"
+      },
+      "Settings":{
+         "action":"bloggie.custom.command.loadSettings()",
+         "Title":"设置"
+      },
+      "Main":{
+         "file":"./Bloggie/article/Main.md",
+         "Title":"DaleZ 的 Blog"
+      }
+   }
+}

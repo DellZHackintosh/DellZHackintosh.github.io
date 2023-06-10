@@ -1,0 +1,48 @@
+{
+    "background_color": "#202020",
+    "description": "DaleZ 的 Blog PWA。",
+    "dir": "ltr",
+    "lang": "zh-CN",
+    "display": "standalone",
+    "display_override": [
+        "window-controls-overlay",
+        "standalone"
+    ],
+    "icons": [
+        {
+            "src": "Windows/Small.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "Windows/Medium.png",
+            "sizes": "142x142",
+            "type": "image/png"
+        },
+        {
+            "src": "Windows/Big.png",
+            "sizes": "1240x1240",
+            "type": "image/png"
+        },
+        {
+            "src": "Windows/Small.svg",
+            "sizes": "16x16 20x20 24x24 30x30 32x32",
+            "type": "image/svg+xml"
+        },
+        {
+            "src": "Windows/Medium.svg",
+            "sizes": "36x36 40x40 44x44 48x48 50x50 55x55 60x60 63x63 64x64 66x66 71x71 72x72 75x75 80x80 88x88 89x89 96x96 100x100 107x107 142x142",
+            "type": "image/svg+xml"
+        },
+        {
+            "src": "Windows/Big.svg",
+            "sizes": "176x176 188x188 200x200 225x225 256x256 300x300 310x310 388x388 465x465 600x600 620x620 1240x1240",
+            "type": "image/svg+xml"
+        }
+    ],
+    "name": "DaleZ 的 Blog",
+    "orientation": "any",
+    "scope": "../../../../",
+    "start_url": "../../../../index.html",
+    "theme_color": "#202020"
+}

@@ -1,0 +1,6 @@
+在这里分享一些微软风格的音乐，顺便测试一下。风格各异，写作业时聆听效果极佳。
+<iframe frameborder="no" loading="lazy" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=3&id=904100037&auto=0&height=66"></iframe>
+<iframe frameborder="no" loading="lazy" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=3&id=904118253&auto=0&height=66"></iframe>
+<p><span data-s9e-mediaembed="bilibili" style="display:inline-block;width:100%;max-width:990px"><span style="display:block;overflow:hidden;position:relative;padding-bottom:54.545455%"><iframe allowfullscreen="" loading="lazy" scrolling="no" src="//player.bilibili.com/player.html?aid=&amp;bvid=14s411D7pT&amp;page=&amp;autoplay=0" style="border:0;height:100%;left:0;position:absolute;width:100%"></iframe></span></span></p>
+<br/>
+<p><span data-s9e-mediaembed="bilibili" style="display:inline-block;width:100%;max-width:990px"><span style="display:block;overflow:hidden;position:relative;padding-bottom:54.545455%"><iframe allowfullscreen="" loading="lazy" scrolling="no" src="//player.bilibili.com/player.html?aid=209251743&amp;bvid=BV1dh411x7Z9&amp;cid=444287216&amp;page=&amp;autoplay=0" style="border:0;height:100%;left:0;position:absolute;width:100%"></iframe></span></span></p>
