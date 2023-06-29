@@ -1,0 +1,36 @@
+button.f-button>svg {
+    display: none;
+}
+button.f-button:after {
+    font-family: "Segoe Fluent Icons", Icon;
+    font-size: 22px;
+}
+button.f-button[title='Previous']:after {
+    content: '\e76b';
+}
+button.f-button[title='Next']:after {
+    content: '\e76c';
+}
+button.f-button[title='Toggle zoom level']:after {
+    content: '\f78b';
+}
+button.f-button[title='Toggle slideshow']:after {
+    content: '\edb5';
+}
+button.f-button[title='Toggle full-screen mode']:after {
+    content: '\e740';
+}
+button.f-button[title='Toggle thumbnails']:after {
+    content: '\f0e2';
+}
+button.f-button[title='Close']:after {
+    content: '\f78a';
+}
+
+e76b	ChevronLeft
+e76c	ChevronRight
+f78b	SearchMedium
+edb5	PlayBadge12
+e740	FullScreen
+f0e2	GridView(缩略图)
+f78a	CancelMedium

@@ -5,6 +5,10 @@
      box-sizing: border-box;
      cursor: default;
 }
+@font-face {
+	font-family:Icon;
+	src:url(../Res/iconfont/SegoeIcons.ttf);
+}
 a {
      cursor: pointer;
 }
@@ -26,8 +30,7 @@ header, footer {
      flex-grow: 0;
      flex-shrink: 0;
      margin: 0px auto;
-     width: 100%;
-     max-width: 700px;
+     width: min(100%, 750px);
 }
 #DaleZ-custom-Loading {
      text-align: center;
@@ -62,7 +65,6 @@ header, footer {
 }
 #DaleZ-custom-titlebar {
      display: flex;
-     background: #f3f3f3;
      align-items: center;
      width: env(titlebar-area-width, 100%);
      height: max(env(titlebar-area-height, 48px), 48px);
@@ -74,7 +76,26 @@ header, footer {
      -ms-user-select: none;
      user-select: none;
 }
-#DaleZ-custom-titlebar:before {
+#Nav-Controller {
+     margin: 0px 0px 0px 4px;
+     width: 40px;
+     height: 36px;
+     background: transparent;
+     transition: background 0.2s;
+     font-family: "Segoe Fluent Icons", Icon;
+     color: black;
+     appearance: none;
+     border: none;
+     border-radius: 4px;
+     display: none;
+     -webkit-app-region: no-drag;
+     font-size: 16px;
+}
+#Nav-Controller:active {
+     background: #99999933;
+     transition: background 0.2s;
+}
+#DaleZ-custom-title:before {
      content: url(../Res/icon.svg);
      display: block;
      width: 20px;
@@ -93,7 +114,6 @@ header, footer {
      color: #999;
 }
 #bloggie-nav {
-     background: #f3f3f3;
      height: calc(100% - 48px);
      width: 72px;
      display: flex;
@@ -126,15 +146,43 @@ header, footer {
      position: absolute;
      display: flex;
      flex-direction: column;
+     transition: all 1s cubic-bezier(0.75, 0, 0.25, 1);
+}
+#bloggie-main>* {
+     transition: none;
 }
 #bloggie-main>article {
-     width: 100%;
-     max-width: 700px;
+     width: min(100%, 750px);
      margin: 0px auto;
      flex-grow: 1;
 }
 #bloggie-list {
      flex-grow: 1;
+}
+#bloggie-list:before {
+     content: '目录';
+     font-size: 40px;
+     font-weight: 600;
+}
+#bloggie-list>div {
+     min-height: 64px;
+     width: 100%;
+     border-radius: 4px;
+     background: #99999922;
+     margin: 12px 0px;
+     padding: 0px 16px;
+     display: flex;
+     align-items: center;
+}
+#bloggie-list>div:before {
+     content: '\f000';
+     font-size: 20px;
+     font-family: "Segoe Fluent Icons", Icon;
+     display: block;
+     width: 34px;
+}
+#bloggie-list:before, #bloggie-list>div:before, #bloggie-list>div>div>p {
+     color: white;
 }
 .giscus {
      border: 1px solid #e5e5e5;
@@ -142,8 +190,7 @@ header, footer {
      background: #fdfdfd;
      margin-top: 12px;
      padding: 16px;
-     width: unset;
-     max-width: 700px;
+     width: min(100%, 750px);
      margin: 0px auto;
 }
 img.emoji {
@@ -159,7 +206,7 @@ img.emoji {
      appearance: none;
      border: none;
      border-radius: 4px;
-     background: #00000000;
+     background: transparent;
      color: #5b5d5f;
      position: relative;
      padding: 0px;
@@ -247,12 +294,6 @@ img.emoji {
      body {
           background: #202020;
      }
-     #DaleZ-custom-titlebar {
-          background: #202020;
-     }
-     #bloggie-nav {
-          background: #202020;
-     }
      #bloggie {
           background: #202020;
      }
@@ -270,6 +311,9 @@ img.emoji {
      }
      .fancybox__backdrop {
           background: #20202099 !important;
+     }
+     #Nav-Controller {
+          color: white;
      }
 }
 @keyframes light-init {
@@ -308,5 +352,48 @@ img.emoji {
      100% {
           top: -66%;
           height: 66%;
+     }
+}
+@media screen and (orientation: portrait) {
+     #bloggie-nav {
+          left: -72px;
+          transition: all 1s cubic-bezier(0.75, 0, 0.25, 1);
+          background-color: #f3f3f3;
+          z-index: 2;
+          border: 1px soild transparent;
+     }
+     #bloggie-main {
+          margin: max(env(titlebar-area-height, 48px), 48px) 0px 0px 0px;
+          width: 100%;
+          border-radius: 0px;
+     }
+     #Nav-Controller {
+          display: block;
+     }
+     .navshow {
+          left: 0px !important;
+          border-radius: 8px;
+     }
+     @media (prefers-color-scheme: dark) {
+          #bloggie-nav {
+               background-color: #202020;
+          }
+     }
+}
+@media (any-hover: hover) {
+     #Nav-Controller:hover {
+          background: #99999922;
+          transition: background 0.2s;
+     }
+     #bloggie-list>div:hover {
+          background: #99999933;
+     }
+}
+@media (min-width: 600px) {
+     #Bloggie-list {
+          margin: 0px 48px;
+     }
+     #bloggie-list {
+          margin: 0px 48px;
      }
 }

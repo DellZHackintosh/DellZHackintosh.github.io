@@ -48,6 +48,23 @@ bloggie.custom.command.loadcontentafterarticle = (ctt) => {
         f.appendChild(p);
         f.innerHTML += `<p>本站文章除其作者特殊声明外，一律采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0许可协议</a>进行授权，进行转载或二次创作时<b>务必以相同协议</b>进行共享，<b>严禁</b>用于商业用途。</p>`;
     }
+    var getanchor = /#(.*)$/;
+    document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+        anchor.addEventListener('click', e=>{
+            if (getanchor.test(anchor.href)) {
+                var currenturl = window.location.href.match(/^(.*?)(?=#|$)/)[1];
+                var targeturl = anchor.href.match(/^(.*?)(?=#|$)/)[1];
+                var target = document.getElementById(decodeURIComponent(anchor.href.match(getanchor)[1]));
+                if (target && currenturl == targeturl) target.scrollIntoView({behavior: 'smooth'});
+                window.history.pushState({}, '', anchor.href);
+                e.preventDefault();
+            }
+        });
+    });
+    if (getanchor.test(window.location.href)) {
+        var target = document.getElementById(decodeURIComponent(window.location.href.match(getanchor)[1]));
+        if (target) target.scrollIntoView({behavior: 'smooth'});
+    }
     return (ctt.Title != '设置') ? f : undefined;
 };
 
@@ -57,7 +74,11 @@ bloggie.custom.command.Article = (ctt) => {
     msemoji.parse(aie,{
         base: 'https://gh.sourcegcdn.com/DellZHackintosh/msemoji/1.1.2/src/',
         ext: '.svg',
-        folder: 'Flat'
+        folder: 'Flat',
+        attributes: () => ({
+            loading: 'lazy',
+            crossorigin: 'anonymous'
+        })
     });
     var main = document.getElementById('bloggie-main');
     while (main.hasChildNodes()) {
@@ -169,3 +190,56 @@ bloggie.custom.command.loadSettings = async () => {
     anim.addEventListener('DOMLoaded', ()=>anim.playSegments([0,90], true));
     main.appendChild(div2);
 }
+
+bloggie.custom.command.onerror = async () => {
+    bloggie.custom.LoadArticleState = 'failed';
+    var main = document.getElementById('bloggie-main');
+    var div = document.createElement('div');
+    div.id = 'DaleZ-Custom-Working-Animation';
+    var anim = lottie.loadAnimation({
+        container: div,
+        renderer: 'svg',
+        loop: false,
+        autoplay: false,
+        path: './Bloggie/skin/Res/Anim/Error.json'
+    });
+    var div2 = document.createElement('div');
+    div2.id = 'DaleZ-Custom-Settings';
+    var h1 = document.createElement('h1');
+    h1.innerText = '出错了…';
+    var p = document.createElement('p');
+    p.innerText = '很抱歉遇到错误。请尝试刷新。若复现，请检查网络连接。';
+    div2.appendChild(div);
+    div2.appendChild(h1);
+    div2.appendChild(p);
+    main.innerHTML = '';
+    anim.addEventListener('DOMLoaded', ()=>anim.playSegments([0,90], true));
+    main.appendChild(div2);
+}
+bloggie.custom.command.NavController = (()=> {
+    var Nav = document.getElementById('bloggie-nav');
+    function NavController() {
+        Nav.classList.toggle('navshow');
+    }
+    return NavController;
+})();
+document.getElementById('bloggie').addEventListener('click', event => {
+    if (event.target.id != 'bloggie-nav' && event.target.id != 'Nav-Controller') document.getElementById('bloggie-nav').classList.toggle('navshow', false);
+});
+
+bloggie.custom.command.listmaker = (ctt, name) => {
+    var div = document.createElement('div');
+    div.onclick = () => bloggie.LoadArticle(name);
+    var div2 = document.createElement('div');
+    var p = document.createElement('p');
+    p.innerHTML = ctt.Title;
+    div2.appendChild(p);
+    div.appendChild(div2);
+    return div;
+}
+(async () => {
+    try {
+        var ctt = await fetch('./Bloggie/Core/base.json?ServiceWorker=networkfirst');
+        if (ctt.ok) localStorage.setItem("bloggie-base", JSON.stringify(await ctt.json()));
+    } catch(e) {}
+})();
