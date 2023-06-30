@@ -182,7 +182,7 @@ header, footer {
      width: 34px;
 }
 #bloggie-list:before, #bloggie-list>div:before, #bloggie-list>div>div>p {
-     color: white;
+     color: #191a1a;
 }
 .giscus {
      border: 1px solid #e5e5e5;
@@ -313,6 +313,9 @@ img.emoji {
           background: #20202099 !important;
      }
      #Nav-Controller {
+          color: white;
+     }
+     #bloggie-list:before, #bloggie-list>div:before, #bloggie-list>div>div>p {
           color: white;
      }
 }

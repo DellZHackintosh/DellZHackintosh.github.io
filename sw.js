@@ -17,6 +17,7 @@ self.addEventListener('activate', event => {
       '/Bloggie/skin/Res/Anim/Working.json',
       '/Bloggie/skin/Res/Anim/Error.json'
     ]);
+    await cache.delete('/Bloggie/skin/CSS/blog.css');
     await clients.claim();
   })());
 });
