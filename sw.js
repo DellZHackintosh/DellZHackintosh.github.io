@@ -6,7 +6,11 @@ const base = /^https?:\/\/[^\/]+\/base\.json$/;
 const networkbydefault = /^(https?):\/\/[^\s/$.?#].[^\s]*\.(js|md)$/;
 const img = /^(https?):\/\/[^\s/$.?#].[^\s]*\.(gif|jpg|jpeg|tiff|png|svg|webp)$/;
 const getarg = /ServiceWorker=([^&]*)/;
+const exclude = /^(https?):\/\/[^\/]+\/msemoji/;
 
+self.addEventListener("install", () => {
+  self.skipWaiting();
+});
 
 self.addEventListener('activate', event => {
   event.waitUntil((async () => {
@@ -17,7 +21,18 @@ self.addEventListener('activate', event => {
       '/Bloggie/skin/Res/Anim/Working.json',
       '/Bloggie/skin/Res/Anim/Error.json'
     ]);
-    await cache.delete('/Bloggie/skin/CSS/blog.css');
+    let Delete = ['/Bloggie/skin/CSS/blog.css',
+                  '/Bloggie/Core/Core.js',
+                  '/Bloggie/skin/CSS/component.css',
+                  '/Bloggie/Core/base.js',
+                  '/Bloggie/Core/base.json',
+                  '/Bloggie/js/CSS.js',
+                  '/Bloggie/js/custom.js'];
+    Delete.forEach(async (file) => {
+      await cache.delete(file, {
+        ignoreSearch: true
+      });
+    });
     await clients.claim();
   })());
 });
@@ -70,6 +85,8 @@ self.addEventListener('fetch', event => {
           return;
           break;
       }
+    } else if (exclude.test(event.request.url)) {
+      return;
     } else if (networkbydefault.test(event.request.url)) {
       try {
         const fetchResponse = await fetch(event.request);

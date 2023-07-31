@@ -1,0 +1,304 @@
+:root {
+    --details-border-color: #e5e5e5;
+    --details-background: #fbfbfb;
+    --summary-hover-background: #f6f6f6;
+    --summary-active-background: #f5f5f5;
+    --details-second-font-color: #5e5e5e;
+    --title-color: #191a1a;
+}
+
+.first {
+    box-sizing: border-box;
+    min-height: 64px;
+    margin: 12px 0px;
+    padding: 0px 16px;
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--details-border-color);
+    border-radius: 4px;
+    background-color: var(--details-background);
+    user-select: none;
+    transition: background 0.1s linear;
+    width: 100%;
+}
+
+.first::before {
+    content: attr(data-icon);
+    font-size: 20px;
+    font-family: "Segoe Fluent Icons", Icon;
+    display: block;
+    width: 34px;
+}
+
+.text {
+    text-align: left;
+}
+
+.text>p {
+    margin: 0px;
+}
+
+.title {
+    font-size: 14px;
+    color: var(--title-color);
+}
+
+.desp {
+    font-size: 12px;
+    color: var(--details-second-font-color);
+}
+
+.other {
+    margin-left: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.tagGroup {
+    display: flex;
+    align-items: center;
+}
+
+.tagGroup::before {
+    content: '标签：';
+}
+
+.infoGroup {
+    margin-right: 32px;
+}
+
+.infoGroup > p {
+    margin: 0px;
+}
+
+.infoGroup > p::before, .tagGroup::before {
+    font-family: "Segoe Fluent Icons", harmonyossanssc, "harmonyos sans sc", system-ui, -apple-system, BlinkMacSystemFont, Icon;
+}
+
+.infoGroup > p:nth-child(1)::before {
+    content: '创建时间：';
+}
+
+.infoGroup > p:nth-child(2)::before {
+    content: '修改时间：';
+}
+
+.title,
+.desp,
+.Tag,
+.infoGroup {
+    font-family: harmonyossanssc, "harmonyos sans sc", system-ui, -apple-system, BlinkMacSystemFont, emoji;
+}
+
+.Tag {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 12px;
+    line-height: 16px;
+    padding-left: 3px;
+    width: -moz-fit-content;
+    height: -moz-fit-content;
+    width: fit-content;
+    height: fit-content;
+    background-color: #036ac4;
+    transition: filter 0.1s linear;
+    display: inline-flex;
+    margin: 1px;
+}
+
+.Tag::before {
+    content: attr(data-icon);
+    font-size: 12px;
+    font-family: "Segoe Fluent Icons", Icon;
+    display: block;
+    width: 16px;
+    float: left;
+}
+
+.WinUI-noticeBar {
+    display: flex;
+    min-height: 48px;
+    width: 100%;
+    border-radius: 4px;
+    background-color: #d3e7f7;
+    padding: 16px;
+    box-sizing: border-box;
+    user-select: none;
+    margin: 12px 0px;
+    align-items: flex-start;
+}
+
+.WinUI-noticeBar>p {
+    margin: 0px;
+    font-size: 14px;
+}
+
+.WinUI-noticeBar::before {
+    font-family: "Segoe Fluent Icons", Icon;
+    content: '';
+    margin-right: 16px;
+    color: #0063b1;
+}
+
+.WinUI-hyperLink {
+    appearance: none;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin-left: auto;
+    background-color: transparent;
+    transition: background 0.1s linear;
+}
+
+.WinUI-hyperLink:hover {
+    background-color: #00000033;
+    cursor: pointer;
+    transition: background 0.1s linear;
+}
+
+.WinUI-hyperLink:active {
+    background-color: #00000022;
+    cursor: pointer;
+    transition: background 0.1s linear;
+}
+
+header {
+    width: 100%;
+    padding-left: 7.29167%;
+    padding-right: 7.29167%;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    min-height: 50vh;
+    overflow: hidden;
+}
+
+header::before {
+    content: attr(data-icon);
+    display: block;
+    width: 92px;
+    height: 92px;
+    color: white;
+    font-family: "Segoe Fluent Icons", Icon;
+    font-size: 72px;
+}
+
+#header-desp::before {
+    content: '摘要：';
+    font-weight: bold;
+}
+
+#header-ti::before {
+    content: '最后修改日期：';
+    font-weight: bold;
+}
+
+#header-tag::before {
+    content: '标签：';
+    font-weight: bold;
+}
+
+@media (min-width: 768px) {
+    header {
+        height: 80vh;
+    }
+}
+
+header {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    color: #fff;
+    height: auto;
+    min-height: 0;
+}
+
+@media (min-width: 854px) {
+    header {
+        padding-top: 44px;
+        padding-bottom: 44px;
+    }
+}
+
+@media (min-width: 1390px) {
+    header {
+        padding-top: 48px;
+        padding-bottom: 48px;
+    }
+}
+
+@media (min-width: 768px) {
+    header {
+        padding-top: 80px;
+        padding-bottom: 100px;
+        text-align: left;
+    }
+}
+
+@media (min-width: 768px) and (min-width: 854px) {
+    header {
+        padding-top: 88px;
+    }
+}
+
+@media (min-width: 768px) and (min-width: 1390px) {
+    header {
+        padding-top: 96px;
+    }
+}
+
+@media (min-width: 768px) and (min-width: 854px) {
+    header {
+        padding-bottom: 110px;
+    }
+}
+
+@media (min-width: 768px) and (min-width: 1390px) {
+    header {
+        padding-bottom: 120px;
+    }
+}
+
+@media (any-hover: hover) {
+    .first:hover {
+        transition: background 0.1s linear;
+        background-color: var(--summary-hover-background);
+    }
+
+    .Tag:hover {
+        transition: all 0.1s linear;
+        filter: brightness(1.1);
+    }
+}
+
+.first:active {
+    transition: background 0.1s linear;
+    background-color: var(--summary-active-background);
+}
+
+.Tag:active {
+    transition: filter 0.1s linear;
+    filter: brightness(0.9);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --details-border-color: #1d1d1d;
+        --details-background: #2b2b2b;
+        --summary-hover-background: #323232;
+        --summary-active-background: #272727;
+        --details-second-font-color: #cfcfcf;
+        --title-color: white;
+    }
+
+    .WinUI-noticeBar {
+        background-color: #34424d;
+    }
+
+    .WinUI-noticeBar::before {
+        color: #5fb2f2;
+    }
+}

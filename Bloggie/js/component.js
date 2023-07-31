@@ -1,0 +1,83 @@
+var DaleZ_listbutton = (function () {
+    var template = document.implementation.createHTMLDocument();
+    template.body.innerHTML = `<button class="first">
+        <div class="text">
+            <p class="title"></p>
+            <p class="desp"></p>
+        </div>
+        <div class="other"></div>
+    </button>`;
+
+    function create(title = '', desp = '', other, icon = '') {
+        var final = template.cloneNode(true);
+        final.getElementsByClassName('title')[0].innerHTML = title;
+        final.getElementsByClassName('desp')[0].innerHTML = desp;
+        final.getElementsByClassName('first')[0].setAttribute('data-icon', icon);
+        if (!other) {
+            final.getElementsByClassName('first')[0].removeChild(final.getElementsByClassName('first')[0].lastElementChild)
+        } else {
+            if (typeof (other) === 'text') {
+                final.getElementsByClassName('other')[0].innerHTML = other;
+            } if (Array.isArray(other)) {
+                other.forEach(function (value) {
+                    if (typeof(value) === 'text') {
+                        final.getElementsByClassName('other')[0].innerHTML += value;
+                    } else final.getElementsByClassName('other')[0].appendChild(value);
+                });
+            } else {
+                final.getElementsByClassName('other')[0].appendChild(other);
+            }
+        }
+        return final.getElementsByClassName('first')[0];
+    }
+
+    return create;
+})();
+
+var DaleZ_Tag = (function () {
+    function isLight(val) {   //HEX十六进制颜色值转换为RGB(A)颜色值
+        // 16进制颜色值的正则
+        var reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/;
+        // 把颜色值变成小写
+        var color = val.toLowerCase();
+        var result = '';
+        if (reg.test(color)) {
+            // 如果只有三位的值，需变成六位，如：#fff => #ffffff
+            if (color.length === 4) {
+                var colorNew = "#";
+                for (var i = 1; i < 4; i += 1) {
+                    colorNew += color.slice(i, i + 1).concat(color.slice(i, i + 1));
+                }
+                color = colorNew;
+            }
+            // 处理六位的颜色值，转为RGB
+            var colorChange = [];
+            for (var i = 1; i < 7; i += 2) {
+                colorChange.push(parseInt("0x" + color.slice(i, i + 2)));
+            }
+            var grayLevel = colorChange[0] * 0.299 + colorChange[1] * 0.587 + colorChange[2] * 0.114;
+            if (grayLevel >= 192) {//浅色模式
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    function create(title = '', color = '#036ac4', icon = '', desp) {
+        var final = document.createElement('button');
+        final.className = 'Tag';
+        final.innerHTML = title;
+        final.title = desp || title;
+        if (!isLight(color)) {
+            final.style.color = 'white';
+        }
+        final.style.backgroundColor = color;
+        final.setAttribute('data-icon', icon);
+        return final;
+    }
+
+    return create;
+})();

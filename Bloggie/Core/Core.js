@@ -49,12 +49,8 @@ var bloggie = (function () {
         }
     }
 
-    if (!localStorage.getItem("bloggie-base")) {
-        base = JSON.parse(get('./Bloggie/Core/base.json'));
-        localStorage.setItem("bloggie-base", JSON.stringify(base));
-    } else {
-        base = JSON.parse(localStorage.getItem("bloggie-base"));
-    }
+    base = bloggie_init;
+    delete window.bloggie_init;
 
     window.onerror = function (message, source, lineno, colno, error) {
         Err('Message:' + message + '\nSource:' + source + '\nLineno:' + lineno + '\nColno:' + colno + '\nError:' + error);
@@ -69,7 +65,6 @@ var bloggie = (function () {
         var html = document.documentElement;
         html.lang = base.lang || 'en-US';
         html.dir = base.dir || 'ltr';
-        swloader();
         if (jslist.loading) {
             var scripts = Object.keys(jslist.loading).length;
             for (var n = 1; n <= scripts; n++) {
@@ -246,14 +241,69 @@ var bloggie = (function () {
         document.getElementById('bloggie-main').appendChild(aie);
     };
 
-    function loadlist() {
+    function loadlist(filter = bloggie.custom.listfilter, rest = bloggie.custom.listfilter_rest) {
         document.getElementById('bloggie-main').innerHTML = '';
         var div = document.createElement('div');
         div.id = 'bloggie-list';
-        var art = Object.keys(articlelist);
+        var lc = JSON.parse(JSON.stringify(articlelist));
+        var art = Object.keys(lc);
         var n = art.length;
-        while (n--) {
-            div.appendChild((bloggie.custom.command.listmaker || listmaker)(articlelist[n + 1], art[n]));
+        if (typeof(filter) === 'string') {
+            while (n--) {
+                if (articlelist[n + 1][filter]) {
+                    lc[n + 1].used = true;
+                    div.appendChild((bloggie.custom.command.listmaker || listmaker)(articlelist[n + 1], art[n]));
+                }
+            }
+            if (rest) {
+                n = art.length;
+                while (n--) {
+                    if (!lc[n + 1].used) div.appendChild((bloggie.custom.command.listmaker || listmaker)(articlelist[n + 1], art[n]));
+                }
+            }
+        } else if (typeof(filter) === 'function') {
+            while (n--) {
+                if (filter(articlelist[n + 1])) {
+                    lc[n + 1].used = true;
+                    div.appendChild((bloggie.custom.command.listmaker || listmaker)(articlelist[n + 1], art[n]));
+                }    
+            }
+            if (rest) {
+                n = art.length;
+                while (n--) {
+                    if (!lc[n + 1].used) div.appendChild((bloggie.custom.command.listmaker || listmaker)(articlelist[n + 1], art[n]));
+                }
+            }
+        } else if (Array.isArray(filter)) {
+            filter.forEach((checker, index) => {
+                var n = art.length;
+                if (typeof(checker) === 'string') {
+                    while (n--) {
+                        if (articlelist[n + 1][checker]) {
+                            lc[n + 1].used = true;
+                            div.appendChild((bloggie.custom.command.listmaker || listmaker)(articlelist[n + 1], art[n]));
+                        }
+                    }
+                } else if (typeof(checker) === 'function') {
+                    while (n--) {
+                        if (checker(articlelist[n + 1])) {
+                            lc[n + 1].used = true;
+                            div.appendChild((bloggie.custom.command.listmaker || listmaker)(articlelist[n + 1], art[n]));
+                        }    
+                    }
+                } else console.warn(`传入的数组中第${index}个元素的格式不受支持，已自动忽略。`);
+                if (rest) {
+                    n = art.length;
+                    while (n--) {
+                        if (!lc[n + 1].used) div.appendChild((bloggie.custom.command.listmaker || listmaker)(articlelist[n + 1], art[n]));
+                    }
+                }
+            });
+        } else {
+            if (filter) console.warn(`传入的参数格式不受支持，已自动回退到默认处理。`);
+            while (n--) {
+                div.appendChild((bloggie.custom.command.listmaker || listmaker)(articlelist[n + 1], art[n]));
+            }
         }
         document.getElementById('bloggie-main').appendChild(div);
     }
@@ -263,18 +313,6 @@ var bloggie = (function () {
         div.onclick = () => LoadArticle(name);
         div.innerHTML = ctt.Title;
         return div;
-    }
-
-    async function swloader() {
-        if (navigator.serviceWorker && base.sw.Supported) {
-            try {
-                await navigator.serviceWorker.register(base.sw.path, base.sw.options);
-                await navigator.serviceWorker.ready;
-            }
-            catch (e) {
-                Err(e);
-            }
-        }
     }
 
     return bloggie;

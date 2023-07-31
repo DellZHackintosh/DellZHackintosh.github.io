@@ -26,7 +26,6 @@ body {
      margin: 0px;
 }
 header, footer {
-     text-align: center;
      flex-grow: 0;
      flex-shrink: 0;
      margin: 0px auto;
@@ -147,6 +146,7 @@ header, footer {
      display: flex;
      flex-direction: column;
      transition: all 1s cubic-bezier(0.75, 0, 0.25, 1);
+     scroll-behavior: smooth;
 }
 #bloggie-main>* {
      transition: none;
@@ -164,27 +164,10 @@ header, footer {
      font-size: 40px;
      font-weight: 600;
 }
-#bloggie-list>div {
-     min-height: 64px;
-     width: 100%;
-     border-radius: 4px;
-     background: #99999922;
-     margin: 12px 0px;
-     padding: 0px 16px;
-     display: flex;
-     align-items: center;
-}
-#bloggie-list>div:before {
-     content: '\f000';
-     font-size: 20px;
-     font-family: "Segoe Fluent Icons", Icon;
-     display: block;
-     width: 34px;
-}
-#bloggie-list:before, #bloggie-list>div:before, #bloggie-list>div>div>p {
+#bloggie-list:before {
      color: #191a1a;
 }
-.giscus {
+.giscus, #tagArea {
      border: 1px solid #e5e5e5;
      border-radius: 4px;
      background: #fdfdfd;
@@ -192,6 +175,13 @@ header, footer {
      padding: 16px;
      width: min(100%, 750px);
      margin: 0px auto;
+}
+#tagArea {
+     text-align: center;
+}
+#tagArea > h2::before {
+     content: '';
+     font-family: "Segoe Fluent Icons", Icon;
 }
 img.emoji {
      height: 1em;
@@ -302,7 +292,7 @@ img.emoji {
           border-top: 1px solid #1d1d1d;
           background: #272727;
      }
-     .giscus {
+     .giscus, #tagArea {
           border: 1px solid #1d1d1d;
           background: #323232;
      }
@@ -315,7 +305,7 @@ img.emoji {
      #Nav-Controller {
           color: white;
      }
-     #bloggie-list:before, #bloggie-list>div:before, #bloggie-list>div>div>p {
+     #bloggie-list:before {
           color: white;
      }
 }
@@ -388,14 +378,8 @@ img.emoji {
           background: #99999922;
           transition: background 0.2s;
      }
-     #bloggie-list>div:hover {
-          background: #99999933;
-     }
 }
 @media (min-width: 600px) {
-     #Bloggie-list {
-          margin: 0px 48px;
-     }
      #bloggie-list {
           margin: 0px 48px;
      }

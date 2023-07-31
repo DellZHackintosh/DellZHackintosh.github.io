@@ -1,13 +1,24 @@
 'use strict';
 bloggie.custom.command.loadcontentbeforearticle = (ctt) => {
     if (typeof(ctt.Comment) != 'undefined') {
-        var r = document.createElement('hr');
         var h = document.createElement('header');
         var t = document.createElement('h1');
         var c = document.createTextNode(ctt.Title);
+        var d = document.createElement('p');
+        d.appendChild(document.createTextNode(ctt.desp));
+        d.id = 'header-desp';
+        var ti = document.createElement('p');
+        ti.appendChild(document.createTextNode(ctt.edit || ctt.create));
+        ti.id = 'header-ti';
+        var tag = bloggie.custom.command.tagGroupMaker(ctt.tags, true);
+        tag.id = 'header-tag'
         t.appendChild(c);
         h.appendChild(t);
-        h.appendChild(r);
+        h.style.backgroundColor = ctt.color || '#036ac4';
+        h.setAttribute('data-icon', ctt.icon || '');
+        h.appendChild(d);
+        h.appendChild(ti);
+        h.appendChild(tag);
         return h;
     }
 };
@@ -32,21 +43,24 @@ bloggie.custom.command.loadcontentafterarticle = (ctt) => {
     var f = document.createElement('footer');
     if (ctt.Comment) {
         var h = document.createElement('hr');
-        var y = new Date().getFullYear();
-        var p = document.createElement('p');
-        p.appendChild(document.createTextNode(`© 2023-`+y+` DaleZ`));
         f.appendChild(h);
-        f.appendChild(p);
-        f.innerHTML += `<p>本站文章除其作者特殊声明外，一律采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0许可协议</a>进行授权，进行转载或二次创作时<b>务必以相同协议</b>进行共享，<b>严禁</b>用于商业用途。</p>`;
+        var y = new Date().getFullYear();
+        f.innerHTML += `<div class="WinUI-noticeBar"><p>© 2023-${y} DaleZ<br />本站文章除其作者特殊声明外，一律采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0许可协议</a>进行授权，进行转载或二次创作时<b>务必以相同协议</b>进行共享，<b>严禁</b>用于商业用途。</p></div>`;
         f.appendChild(cmt);
     } else {
         var h = document.createElement('hr');
-        var y = new Date().getFullYear();
-        var p = document.createElement('p');
-        p.appendChild(document.createTextNode(`© 2023-`+y+` DaleZ`));
         f.appendChild(h);
-        f.appendChild(p);
-        f.innerHTML += `<p>本站文章除其作者特殊声明外，一律采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0许可协议</a>进行授权，进行转载或二次创作时<b>务必以相同协议</b>进行共享，<b>严禁</b>用于商业用途。</p>`;
+        var y = new Date().getFullYear();
+        f.innerHTML += `<div class="WinUI-noticeBar"><p>© 2023-${y} DaleZ<br />本站文章除其作者特殊声明外，一律采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0许可协议</a>进行授权，进行转载或二次创作时<b>务必以相同协议</b>进行共享，<b>严禁</b>用于商业用途。</p></div>`;
+    }
+    if (ctt.Title == '目录') {
+        var tagArea = bloggie.custom.command.tagGroupMaker(Object.keys(bloggie.custom.tags), true);
+        tagArea.removeAttribute('class');
+        tagArea.id = 'tagArea';
+        var ti = document.createElement('h2');
+        ti.appendChild(document.createTextNode('所有标签'));
+        tagArea.insertBefore(ti, tagArea.firstElementChild);
+        f.insertBefore(tagArea, f.firstElementChild);
     }
     var getanchor = /#(.*)$/;
     document.querySelectorAll('a[href*="#"]').forEach(anchor => {
@@ -227,19 +241,74 @@ document.getElementById('bloggie').addEventListener('click', event => {
     if (event.target.id != 'bloggie-nav' && event.target.id != 'Nav-Controller') document.getElementById('bloggie-nav').classList.toggle('navshow', false);
 });
 
-bloggie.custom.command.listmaker = (ctt, name) => {
-    var div = document.createElement('div');
-    div.onclick = () => bloggie.LoadArticle(name);
-    var div2 = document.createElement('div');
-    var p = document.createElement('p');
-    p.innerHTML = ctt.Title;
-    div2.appendChild(p);
-    div.appendChild(div2);
-    return div;
+bloggie.custom.command.listmaker = function (ctt, name) {
+    var btn = DaleZ_listbutton(ctt.Title, ctt.desp, [bloggie.custom.command.infoMaker(ctt), bloggie.custom.command.tagGroupMaker(ctt.tags, true)], ctt.icon);
+    btn.onclick = (event) => {
+        if (event.target.className != 'Tag') bloggie.LoadArticle(name);
+    }
+    return btn;
 }
-(async () => {
-    try {
-        var ctt = await fetch('./Bloggie/Core/base.json?ServiceWorker=networkfirst');
-        if (ctt.ok) localStorage.setItem("bloggie-base", JSON.stringify(await ctt.json()));
-    } catch(e) {}
-})();
+
+bloggie.custom.listfilter = 'Top';
+bloggie.custom.listfilter_rest = true;
+
+bloggie.custom.tags = {
+    'Test1':{
+        'Icon':'1',
+        'Color':'#114514',
+        'desp':'TEST1'
+    },
+    'Test2':{
+        'Icon':'2',
+        'Color':'#191981',
+        'desp':'TEST2'
+    },
+    'Test3':{
+        'Icon':'3',
+        'Color':'#233',
+        'desp':'TEST3'
+    }
+}
+
+bloggie.custom.command.tagGroupMaker = (tagArray, event) => {
+    let Final = document.createElement('div');
+    Final.className = 'tagGroup';
+    tagArray.forEach((TagName) => {
+        var title = TagName;
+        var color = bloggie.custom.tags[TagName]['Color'];
+        var icon = bloggie.custom.tags[TagName]['Icon'];
+        var desp = bloggie.custom.tags[TagName]['desp'];
+        var finaltag = DaleZ_Tag(title, color, icon, desp);
+        if (event) finaltag.addEventListener('click', () => {
+            bloggie.loadlist((info) => {
+                if (info.tags.includes(TagName)) return true;
+            }, false);
+        });
+        Final.appendChild(finaltag);
+    });
+    return Final;
+}
+
+bloggie.custom.command.infoMaker = (info) => {
+    let final = document.createElement('div');
+    final.className = 'infoGroup';
+    if (info.create) {
+        var c = document.createElement('p');
+        c.appendChild(document.createTextNode(info.create));
+        final.appendChild(c);
+    }
+    if (info.edit) {
+        var e = document.createElement('p');
+        e.appendChild(document.createTextNode(info.edit));
+        final.appendChild(e);
+    }
+    if (info.Comment === true) {
+        final.appendChild(DaleZ_Tag('可评论', '#217346', ''));
+    } else if (info.Comment === false) {
+        final.appendChild(DaleZ_Tag('不可评论', '#cf0019', ''));
+    }
+    if (info.Top === true) {
+        final.appendChild(DaleZ_Tag('置顶内容', '#0078d4', ''));
+    }
+    return final;
+}
